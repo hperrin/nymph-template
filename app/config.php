@@ -12,13 +12,15 @@ require __DIR__.'/autoload.php';
 
 // Nymph's configuration.
 $nymphConfig = [
-  'MySQL' => [
-    'host' => getenv('MYSQL_HOST'),
-    'database' => getenv('MYSQL_DATABASE'),
-    'user' => getenv('MYSQL_USER'),
-    'password' => trim(file_get_contents(getenv('MYSQL_PASSWORD_FILE')))
+  'driver' => 'SQLite3',
+  'SQLite3' => [
+    'filename' => '/db/nymph.db'
   ]
 ];
+
+if (!getenv('PUBSUB_HOST')) {
+  $nymphConfig['SQLite3']['open_flags'] = SQLITE3_OPEN_READONLY;
+}
 
 \Nymph\Nymph::configure($nymphConfig);
 
