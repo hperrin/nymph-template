@@ -1,5 +1,7 @@
 FROM tozd/postfix:latest
 
+RUN apt-get update && apt-get install -y mailutils
+
 RUN echo "root:nymph_template_password" | chpasswd
 
 COPY container-conf-files/postfix-main.cf /etc/postfix/main.cf
