@@ -1,6 +1,10 @@
 FROM php:7.1-apache
 
-RUN docker-php-ext-install mysqli
+RUN apt-get update && \
+  apt-get install -y libpq-dev postgresql postgresql-contrib && \
+  docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
+  docker-php-ext-install pgsql && \
+  apt-get purge -y --auto-remove libpq-dev
 
 RUN apt-get update && \
   apt-get install -y msmtp msmtp-mta && \

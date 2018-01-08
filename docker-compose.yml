@@ -2,16 +2,13 @@ version: '3.1'
 
 services:
   db:
-    image: mysql:latest
+    image: postgres:latest
     volumes:
-      - ./db_data:/var/lib/mysql
+      - ./db_data:/var/lib/postgresql/data
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-      MYSQL_DATABASE: nymph
-      MYSQL_USER: nymph
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_USER: nymph
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
     secrets:
-      - db_root_password
       - db_password
 
   mta:
@@ -29,14 +26,13 @@ services:
       dockerfile: Dockerfile-pubsub
     volumes:
       - ./app:/nymph
-    command: ["./wait-for-it.sh", "db:3306", "--", "php", "/nymph/pubsub.php"]
+    command: ["./wait-for-it.sh", "db:5432", "--", "php", "/nymph/pubsub.php"]
     ports:
       - "8081:8080"
     environment:
-      MYSQL_HOST: db:3306
-      MYSQL_DATABASE: nymph
-      MYSQL_USER: nymph
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_HOST: db:5432
+      POSTGRES_USER: nymph
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
     secrets:
       - db_password
 
@@ -53,10 +49,9 @@ services:
     ports:
       - "8080:80"
     environment:
-      MYSQL_HOST: db:3306
-      MYSQL_DATABASE: nymph
-      MYSQL_USER: nymph
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_HOST: db:5432
+      POSTGRES_USER: nymph
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
       PUBSUB_HOST: pubsub:8080
     secrets:
       - db_password

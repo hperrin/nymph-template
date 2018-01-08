@@ -12,11 +12,12 @@ require __DIR__.'/autoload.php';
 
 // Nymph's configuration.
 $nymphConfig = [
-  'MySQL' => [
-    'host' => getenv('MYSQL_HOST'),
-    'database' => getenv('MYSQL_DATABASE'),
-    'user' => getenv('MYSQL_USER'),
-    'password' => trim(file_get_contents(getenv('MYSQL_PASSWORD_FILE')))
+  'driver' => 'PostgreSQL',
+  'PostgreSQL' => [
+    'host' => getenv('POSTGRES_HOST'),
+    'database' => getenv('POSTGRES_USER'),
+    'user' => getenv('POSTGRES_USER'),
+    'password' => trim(file_get_contents(getenv('POSTGRES_PASSWORD_FILE')))
   ]
 ];
 
