@@ -26,11 +26,13 @@ services:
       dockerfile: Dockerfile-pubsub
     volumes:
       - ./app:/nymph
-    command: ["./wait-for-it.sh", "db:5432", "--", "php", "/nymph/pubsub.php"]
+    command: ["./wait-for-it.sh", "db:5432", "-t", "30", "--", "./wait-and-run.sh"]
     ports:
       - "8081:8080"
     environment:
-      POSTGRES_HOST: db:5432
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: nymph
       POSTGRES_USER: nymph
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
     secrets:
@@ -50,7 +52,9 @@ services:
     ports:
       - "8080:80"
     environment:
-      POSTGRES_HOST: db:5432
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: nymph
       POSTGRES_USER: nymph
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
       PUBSUB_HOST: pubsub:8080

@@ -15,7 +15,8 @@ $nymphConfig = [
   'driver' => 'PostgreSQL',
   'PostgreSQL' => [
     'host' => getenv('POSTGRES_HOST'),
-    'database' => getenv('POSTGRES_USER'),
+    'port' => getenv('POSTGRES_PORT'),
+    'database' => getenv('POSTGRES_DATABASE'),
     'user' => getenv('POSTGRES_USER'),
     'password' => trim(file_get_contents(getenv('POSTGRES_PASSWORD_FILE')))
   ]
