@@ -47,3 +47,7 @@ To add a new entity, follow these steps:
 * Duplicate both Todo.php and Todo.js in the entities folder, and rename/edit them.
 * Run `npm run build` to build the UMD entity JS.
 * In `index.html`, add a new script tag under `<script src="build/Todo.js"></script>` for your new entity.
+
+## SQLite3 Problems
+
+Currently if the app doesn't work in the SQLite3 branch, you have to `docker kill nymphtemplate_pubsub_1` to unlock the DB, save something, then kill all the servers and bring them back up. This happens because the PubSub server tries to create tables and fails, because it is opened as readonly. This keeps the DB in a perpetual lock.

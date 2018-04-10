@@ -18,7 +18,7 @@ if [ ! -d "db_data" ]; then
 fi
 
 if [ ! -f "./db_data/nymph.db" ]; then
-  echo 'SELECT 1;' | sqlite3 ./db_data/nymph.db
+  echo 'SELECT "Creating SQLite3 DB...";' | sqlite3 ./db_data/nymph.db
 fi
 
 if [ ! -d "mail" ]; then
