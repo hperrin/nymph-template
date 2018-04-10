@@ -29,6 +29,7 @@ services:
     volumes:
       - ./app:/var/www/html
       - ./db_data:/db
+      - ./maintenance:/maintenance
     ports:
       - "8080:80"
     environment:
