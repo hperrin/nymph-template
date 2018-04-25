@@ -10,16 +10,24 @@ date_default_timezone_set('America/Los_Angeles');
 
 require __DIR__.'/autoload.php';
 
+$filename = '/db/nymph.db';
+
 // Nymph's configuration.
 $nymphConfig = [
   'driver' => 'SQLite3',
   'SQLite3' => [
-    'filename' => '/db/nymph.db'
+    'filename' => $filename
   ]
 ];
 
+if (!file_exists($filename)) {
+  // Create the DB.
+  \Nymph\Nymph::configure($nymphConfig);
+  \Nymph\Nymph::disconnect();
+}
+
 if (!getenv('PUBSUB_HOST')) {
-  $nymphConfig['SQLite3']['open_flags'] = SQLITE3_OPEN_READONLY;
+  $nymphConfig['SQLite3']['open_flags'] = \SQLITE3_OPEN_READONLY;
 }
 
 \Nymph\Nymph::configure($nymphConfig);

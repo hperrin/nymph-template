@@ -17,10 +17,6 @@ if [ ! -d "db_data" ]; then
   mkdir db_data
 fi
 
-if [ ! -f "./db_data/nymph.db" ]; then
-  echo 'SELECT "Creating SQLite3 DB...";' | sqlite3 ./db_data/nymph.db
-fi
-
 if [ ! -d "mail" ]; then
   mkdir mail
 fi
