@@ -1,4 +1,4 @@
-FROM php:7.1-cli
+FROM php:7.2-cli
 
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pgsql
 RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -o wait-for-it.sh
@@ -7,3 +7,6 @@ RUN chmod 755 wait-for-it.sh
 RUN echo '#!/bin/bash' > wait-and-run.sh
 RUN echo 'sleep 5 && php /nymph/pubsub.php' >> wait-and-run.sh
 RUN chmod 755 wait-and-run.sh
+
+# Memory Limit
+RUN echo "memory_limit=1024M" > $PHP_INI_DIR/conf.d/memory-limit.ini
