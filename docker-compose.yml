@@ -1,47 +1,66 @@
 version: '3.1'
 
 services:
+  web:
+    depends_on:
+      - fpm
+    image: nginx:1.13
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/app
+      - ./config/site.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - app-network
+
   mta:
     build:
-      context: .
+      context: ./config
       dockerfile: Dockerfile-mta
     volumes:
       - ./mail:/var/spool/postfix
+    networks:
+      - app-network
 
   pubsub:
     build:
-      context: .
+      context: ./config
       dockerfile: Dockerfile-pubsub
     volumes:
-      - ./app:/nymph
+      - ./app:/app
       - ./db_data:/db
-    command: ["php", "/nymph/pubsub.php"]
+    command: ["php", "/app/pubsub.php"]
     ports:
       - "8081:8080"
+    networks:
+      - app-network
     environment:
       TILMELD_SECRET_FILE: /run/secrets/tilmeld_secret
     secrets:
       - tilmeld_secret
 
-  web:
+  fpm:
     depends_on:
       - mta
       - pubsub
     build:
-      context: .
-      dockerfile: Dockerfile-web
+      context: ./config
+      dockerfile: Dockerfile-fpm
     volumes:
-      - ./app:/var/www/html
+      - ./app:/app
       - ./db_data:/db
       - ./maintenance:/maintenance
-    ports:
-      - "8080:80"
+    networks:
+      - app-network
     environment:
       PUBSUB_HOST: pubsub:8080
       TILMELD_SECRET_FILE: /run/secrets/tilmeld_secret
     secrets:
       - tilmeld_secret
 
+networks:
+  app-network:
+    driver: bridge
 
 secrets:
   tilmeld_secret:
