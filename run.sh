@@ -8,6 +8,10 @@ if [ ! -d "app/node_modules" ]; then
   ./npm.sh install
 fi
 
+if [ ! -d "app/dist" ]; then
+  ./npm.sh run build
+fi
+
 if [ ! -d "db_data" ]; then
   mkdir db_data
 fi
