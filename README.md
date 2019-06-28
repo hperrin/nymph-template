@@ -6,35 +6,35 @@ For development, it provides a Docker setup that runs a DB (MySQL, PostgreSQL, o
 
 ## Installation
 
-1. Get [Docker](https://www.docker.com/community-edition). (On Ubuntu, see the next section.)
+1. Get [Docker](https://docs.docker.com/install/#supported-platforms), [Docker Compose](https://docs.docker.com/compose/install/), and Degit
+   ```shell
+   curl -fsSL https://get.docker.com -o get-docker.sh
+   sh get-docker.sh
+   sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   npm install -g degit
+   ```
 2. Copy this template:
-  * `npm install -g degit`
-  * `degit hperrin/nymph-template nymph-app` (for MySQL)
-    * `degit hperrin/nymph-template#postgres nymph-app` (for Postgres)
-    * `degit hperrin/nymph-template#sqlite3 nymph-app` (for SQLite3)
-  * `cd nymph-app`
-3. Run the app: `./run.sh`
-4. Go here [http://localhost:8080/](http://localhost:8080/)
+   * for MySQL
+     ```shell
+     degit hperrin/nymph-template nymph-app
+     ```
+   * for Postgres
+     ```shell
+     degit hperrin/nymph-template#postgres nymph-app
+     ```
+   * for SQLite3
+     ```shell
+     degit hperrin/nymph-template#sqlite3 nymph-app
+     ```
+3. Run the app:
+   ```shell
+   cd nymph-app
+   ./run.sh
+   ```
+4. Go to [http://localhost:8080/](http://localhost:8080/)
 
 <small>On SQLite3, the very first time you create an entity (when you register the first user/create the first todo), the DB will become locked. You'll need to refresh the page, but then on it will be fine.</small>
-
-### Docker on Ubuntu 18.04
-
-```sh
-sudo apt-get install docker.io docker-compose && sudo usermod -a -G docker $USER
-```
-
-Then restart, so the group modification takes effect.
-
-### Docker on Ubuntu 17.10 and earlier
-
-```sh
-sudo apt-get install docker.io && sudo usermod -a -G docker $USER
-sudo wget -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m`
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-Then restart, so the group modification takes effect.
 
 ### NPM and Composer
 
@@ -42,7 +42,7 @@ If [NPM](https://nodejs.org/en/download/current/) and/or [Composer](https://getc
 
 You can run commands from the repository root (not the "app" directory) using `composer.sh` and `npm.sh`. For example:
 
-```sh
+```shell
 ./composer.sh require vendor/package
 ./npm.sh install --save package
 ./npm.sh run build
