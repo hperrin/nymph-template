@@ -1,4 +1,6 @@
 # Nymph App Template
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhperrin%2Fnymph-template.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhperrin%2Fnymph-template?ref=badge_shield)
+
 
 This is a template for building an app with [Nymph](http://nymph.io/) and [Tilmeld](http://tilmeld.org/).
 
@@ -53,3 +55,7 @@ You can run commands from the repository root (not the "app" directory) using `c
 1. Duplicate both Todo.php and Todo.js in the src/Entities folder, and rename/edit them.
 2. Run `npm run build` or `npm run watch` in the "app" dir to rebuild the bundled JS.
 3. If you need help, check out the [API docs](https://github.com/sciactive/nymph/wiki/API-Docs).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhperrin%2Fnymph-template.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhperrin%2Fnymph-template?ref=badge_large)
