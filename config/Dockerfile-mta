@@ -1,4 +1,4 @@
-FROM tozd/postfix:latest
+FROM tozd/postfix:alpine-38
 
 RUN echo "root:nymph_template_password" | chpasswd
 

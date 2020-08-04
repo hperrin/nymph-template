@@ -9,9 +9,16 @@
     <script type="text/javascript">
       NymphOptions = {
         restURL: '/rest.php',
-        pubsubURL: 'ws://' + window.location.hostname + ':8081',
+        pubsubURL:
+          window.location.hostname === 'yourapp.example.com'
+            ? 'wss://pubsub.yourapp.example.com'
+            : 'ws://' + window.location.hostname + ':8081',
       };
     </script>
+
+    <!-- Bundled Styles -->
+    <link rel="stylesheet" href="/dist/vendors~main.css" />
+    <link rel="stylesheet" href="/dist/main.css" />
 
     <!-- Bootstrap JS -->
     <script
@@ -49,6 +56,7 @@
   <body>
     <main></main>
     <!-- Bundled JS -->
-    <script src="/dist/bundle.js"></script>
+    <script src="/dist/vendors~main.js"></script>
+    <script src="/dist/main.js"></script>
   </body>
 </html>

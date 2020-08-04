@@ -7,12 +7,12 @@ export const userAvatar = writable(null);
 export const userIsTilmeldAdmin = writable(false);
 
 // Get the current user.
-User.current().then(userValue => {
+User.current().then((userValue) => {
   user.set(userValue);
 }, ErrHandler);
 
 // Handle logins and logouts.
-User.on('login', userValue => {
+User.on('login', (userValue) => {
   user.set(userValue);
 });
 User.on('logout', () => {
@@ -20,15 +20,15 @@ User.on('logout', () => {
 });
 
 let previousUserValue = false;
-user.subscribe(userValue => {
+user.subscribe((userValue) => {
   if (userValue) {
     if (!previousUserValue) {
       // Get the user's avatar.
-      userValue.$getAvatar().then(userAvatarValue => {
+      userValue.$getAvatar().then((userAvatarValue) => {
         userAvatar.set(userAvatarValue);
       });
       // Is the user a Tilmeld admin?
-      userValue.$gatekeeper('tilmeld/admin').then(userIsTilmeldAdminValue => {
+      userValue.$gatekeeper('tilmeld/admin').then((userIsTilmeldAdminValue) => {
         userIsTilmeldAdmin.set(userIsTilmeldAdminValue);
       });
     }

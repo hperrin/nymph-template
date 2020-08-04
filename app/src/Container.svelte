@@ -232,13 +232,13 @@
 
   onMount(() => {
     // Get the client config (for timezones).
-    User.getClientConfig().then(config => {
+    User.getClientConfig().then((config) => {
       clientConfig = config;
     });
   });
 
   function saveUser() {
-    $user.$save().then(userValue => {
+    $user.$save().then((userValue) => {
       $user = userValue;
     }, ErrHandler);
   }

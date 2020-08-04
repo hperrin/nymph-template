@@ -4,7 +4,7 @@ services:
   web:
     depends_on:
       - fpm
-    image: nginx:1.13
+    image: nginx:1.19
     ports:
       - "8080:80"
     volumes:
@@ -14,7 +14,7 @@ services:
       - app-network
 
   db:
-    image: postgres:10
+    image: postgres:12
     volumes:
       - ./db_data:/var/lib/postgresql/data
     networks:
