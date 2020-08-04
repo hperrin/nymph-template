@@ -4,7 +4,7 @@ services:
   web:
     depends_on:
       - fpm
-    image: nginx:1.13
+    image: nginx:1.19
     ports:
       - "8080:80"
     volumes:
@@ -17,6 +17,7 @@ services:
     build:
       context: ./config
       dockerfile: Dockerfile-mysql
+    command: "--innodb_use_native_aio=0"
     volumes:
       - ./db_data:/var/lib/mysql
     networks:
