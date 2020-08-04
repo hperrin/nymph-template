@@ -31,6 +31,7 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
     "nymph-client": "^5.1.0",
     "pform": "^3.3.0",
     "prettier": "^2.0.5",
