@@ -1,7 +1,9 @@
 #! /bin/bash
 
+set -e
+
 if [ ! -d "app/vendor" ]; then
-  ./composer.sh install
+  ./composer.sh install --ignore-platform-reqs
 fi
 
 if [ ! -d "app/node_modules" ]; then
@@ -24,4 +26,4 @@ if [ ! -f "tilmeld_secret.txt" ]; then
   dd if=/dev/urandom bs=32 count=1 | base64 > ./tilmeld_secret.txt
 fi
 
-docker-compose up
+docker-compose up $*
