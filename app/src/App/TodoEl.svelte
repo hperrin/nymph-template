@@ -140,7 +140,7 @@
   }
 
   function share() {
-    todo.$share(shareUsername).then(result => {
+    todo.$share(shareUsername).then((result) => {
       if (result) {
         shareUsername = '';
       } else {
@@ -150,7 +150,7 @@
   }
 
   function unshare(guid) {
-    todo.$unshare(guid).then(result => {
+    todo.$unshare(guid).then((result) => {
       if (!result) {
         alert('Invalid user.');
       }

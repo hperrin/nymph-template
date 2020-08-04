@@ -127,7 +127,7 @@
   let subscription;
   let loading = false;
 
-  $: remaining = $todos.filter(todo => !todo.done).length;
+  $: remaining = $todos.filter((todo) => !todo.done).length;
 
   let previousUser;
   let previousArchived;
@@ -169,7 +169,7 @@
         ],
       },
     ).subscribe(
-      update => {
+      (update) => {
         loading = false;
         if (update) {
           PubSub.updateArray($todos, update);
@@ -177,7 +177,7 @@
         }
       },
       ErrHandler,
-      count => {
+      (count) => {
         userCount = count;
       },
     );
@@ -203,7 +203,7 @@
     for (let i = 0; i < oldTodos.length; i++) {
       const todo = oldTodos[i];
       if (todo.done) {
-        todo.$archive().then(success => {
+        todo.$archive().then((success) => {
           if (!success) {
             alert("Couldn't save changes to " + todo.name);
           }

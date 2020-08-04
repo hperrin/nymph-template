@@ -6,7 +6,7 @@ export class SleepyCacheService {
     this._getEntityData = Nymph.getEntityData;
     this.entityDataCache = {};
 
-    Nymph.getEntityData = function(...args) {
+    Nymph.getEntityData = function (...args) {
       if (
         args[0].class === entityClass.class &&
         args[1].type === '&' &&
