@@ -1,5 +1,7 @@
 <div
-  class="list-group-item font-weight-normal {todo.done ? 'list-group-item-success' : ''}"
+  class="list-group-item font-weight-normal {todo.done
+    ? 'list-group-item-success'
+    : ''}"
 >
   <span
     class="d-flex flex-md-row align-items-md-center flex-column

@@ -43,7 +43,9 @@
               >
                 <img
                   class="rounded-circle"
-                  src={$userAvatar ? $userAvatar : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAgMAAADxkFD+AAAACVBMVEXMzMyWlpa3t7fI5tFIAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAF0lEQVQYlWNgGOagiQPOdGQZQHdQGQAArI4A0FwgBeUAAAAASUVORK5CYII='}
+                  src={$userAvatar
+                    ? $userAvatar
+                    : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAgMAAADxkFD+AAAACVBMVEXMzMyWlpa3t7fI5tFIAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAF0lEQVQYlWNgGOagiQPOdGQZQHdQGQAArI4A0FwgBeUAAAAASUVORK5CYII='}
                   alt={$user.nameFirst}
                 />
               </a>

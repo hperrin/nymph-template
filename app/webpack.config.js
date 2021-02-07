@@ -10,9 +10,10 @@ const hotMode = process.env.WEBPACK_HOT === 'true';
 module.exports = {
   mode: devMode ? 'development' : 'production',
   optimization: {
+    minimize: !devMode,
     minimizer: [
       new TerserPlugin({
-        sourceMap: true,
+        test: /\.js(\?.*)?$/i,
         extractComments: 'some',
         terserOptions: {
           ecma: 8,
@@ -26,16 +27,12 @@ module.exports = {
         },
       }),
     ],
-    splitChunks: {
-      chunks: 'all',
-    },
   },
+  devtool: 'source-map',
   entry: {
     main: path.resolve(__dirname, 'src', 'index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
     chunkFilename: '[name].js',
     publicPath: '/dist/',
   },
@@ -83,6 +80,7 @@ module.exports = {
           options: {
             dev: devMode,
             emitCss: true,
+            css: true,
             // This will be enabled as soon as svelte-loader supports HMR for Svelte 3.
             hotReload: devMode && false,
           },
