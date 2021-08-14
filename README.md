@@ -4,6 +4,12 @@ This is a template for building an app with [Nymph](http://nymph.io/) and [Tilme
 
 For development, it provides a Docker setup that runs a DB (MySQL, PostgreSQL, or SQLite3), Nginx, Postfix, and Nymph. It presents a usable app, built in Svelte, as a starting point.
 
+## Deprecation Notice
+
+The PHP implementation of Nymph/Tilmeld has been deprecated. It will no longer have any new features added. Instead, a new version of Nymph running on Node.js, written entirely in TypeScript will replace the PHP implementation. You can find it over at the [Nymph.js repo](https://github.com/sciactive/nymphjs).
+
+Since this template is built around the PHP implementation, at least for the time being, this template should be considered deprecated too.
+
 ## Installation
 
 1. Get [Docker](https://docs.docker.com/install/#supported-platforms), [Docker Compose](https://docs.docker.com/compose/install/), and Degit
@@ -15,15 +21,15 @@ For development, it provides a Docker setup that runs a DB (MySQL, PostgreSQL, o
    npm install -g degit
    ```
 2. Copy this template:
-   * for MySQL
+   - for MySQL
      ```shell
      degit hperrin/nymph-template nymph-app
      ```
-   * for Postgres
+   - for Postgres
      ```shell
      degit hperrin/nymph-template#postgres nymph-app
      ```
-   * for SQLite3
+   - for SQLite3
      ```shell
      degit hperrin/nymph-template#sqlite3 nymph-app
      ```
